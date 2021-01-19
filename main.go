@@ -1,13 +1,28 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	_ "github.com/lib/pq"
 )
 
 func main() {
+
+	db, err := sql.Open("postgres", "heynewname")
+	if err != nil {
+	  log.Fatal(err)
+	}
+
+	err = db.Ping()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	
 
 	uhHandler := func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "Hello, UrbanHive!")
