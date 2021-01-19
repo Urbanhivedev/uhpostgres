@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	db, err := sql.Open("postgres", "heynewname")
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 	  log.Fatal(err)
 	}
